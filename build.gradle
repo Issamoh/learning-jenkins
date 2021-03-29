@@ -30,8 +30,6 @@ test {
     useJUnit()
 }
 
-test.finalizedBy(project.tasks["sonarqube"])
-
 javadoc {
     source = sourceSets.main.allJava
     classpath = configurations.compile
@@ -62,15 +60,3 @@ publishing {
         }
     }
 }
-
-slack {
-    webhookUrl 'https://hooks.slack.com/services/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'
-    message {
-        text = "Nouvelle version deployee"
-        channel = '#déploiement-tp-gradle'
-    }
-}
-
-
-generateMatrixAPI.finalizedBy "publish"
-publish.finalizedBy "publishToSlack"
